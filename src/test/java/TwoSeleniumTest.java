@@ -12,8 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class TwoSeleniumTest {
     WebDriver driver;
     By emailField = By.cssSelector("[placeholder=\"Email\"]");
-    By okay = By.cssSelector("[placeholder=\"Email\"]");
-    By okaya = By.cssSelector("[placeholder=\"Email\"]");
+
 
     //beforeTest
 
