@@ -43,6 +43,7 @@ public class TestBase {
     }
 
     //1.18
+    //проврка клика
     public boolean isElementClickable(By by) {
         try {
             driver.findElement(by).click();
