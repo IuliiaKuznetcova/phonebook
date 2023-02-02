@@ -2,13 +2,14 @@ package kw;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
@@ -31,6 +32,13 @@ public class TestBase {
         driver.findElement(cssSelector).click();
         driver.findElement(cssSelector).sendKeys(userData);
     }
+
+    public void checkItemText(By locator, String expectedErrorMessage, String err) {
+        String actualErrorMessage = driver.findElement(locator).getText();
+
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, err);
+    }
+
 
     public boolean isElementPresent(By by) {
         try {

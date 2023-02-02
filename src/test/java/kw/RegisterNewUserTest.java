@@ -2,13 +2,10 @@ package kw;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class RegistrNewUserTest extends TestBase {
-
-
+public class RegisterNewUserTest extends TestBase {
     By loginForm = By.id("login-form");
     By userRegistrationLink = By.cssSelector("[href=\"/user/registration\"]");
     By registrationForm = By.id("registration-form");
@@ -20,6 +17,7 @@ public class RegistrNewUserTest extends TestBase {
     By errorEmailMessageBlock = By.id("email-error-invalid");
     By errorPasswordMaxLengthMessageBlock = By.id("password-error-maxlength");
     Faker faker = new Faker();
+
 
     private void goToRegistrationPage() {
         Assert.assertTrue(isElementPresent(loginForm));
@@ -39,19 +37,20 @@ public class RegistrNewUserTest extends TestBase {
     }
 
     private void checkErrorMessage(By locator, String expectedErrorMessage) {
-        String actualErrorMessage = driver.findElement(locator).getText();
         String err = "Actual error message is not equal expected";
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage, err);
+        checkItemText(locator, expectedErrorMessage, err);
+
     }
+
 
     //Positive
     @Test
-    public void registrNewUserwithValidData() {
+    public void registerNewUserWithValidData() {
         //Arrange
         String userData = faker.internet().emailAddress();
         String password = faker.internet().password();
         String expectedErrorMessage = "noErrorMsg";
-//Act
+        //Act
         goToRegistrationPage();
         fillRegistrationForm(userData, password);
         clickSignUpButton();
@@ -59,23 +58,23 @@ public class RegistrNewUserTest extends TestBase {
         checkErrorMessage(errorMessageBlock, expectedErrorMessage);
     }
 
+
     //Negative
     @Test
-    public void registrNewUserwithInvalidData() {
+    public void registerNewUserWithInvalidData() {
         //Arrange
         String userData = faker.internet().password();
         String password = faker.internet().emailAddress();
         String expectedEmailErrorMessage = "Email must be a valid email address.";
         String expectedPasswordErrorMessage = "Password must be no longer than 20 characters.";
-//Act
+
+        //Act
         goToRegistrationPage();
         fillRegistrationForm(userData, password);
         Assert.assertFalse(isElementPresent(errorMessageBlock));
         //Assert
         checkErrorMessage(errorEmailMessageBlock, expectedEmailErrorMessage);
         checkErrorMessage(errorPasswordMaxLengthMessageBlock, expectedPasswordErrorMessage);
-
-
     }
 
     //Negative
@@ -85,22 +84,31 @@ public class RegistrNewUserTest extends TestBase {
         String userData = "test@gmail.com";
         String password = "test@gmail.com";
         String expectedErrorMessage = "Error! User already exists Login now?";
-//Act
+        //Act
         goToRegistrationPage();
         fillRegistrationForm(userData, password);
         clickSignUpButton();
         //Assert
         checkErrorMessage(errorMessageBlock, expectedErrorMessage);
     }
-
-    public boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException exception) {
-            exception.printStackTrace();
-            return false;
-        }
-    }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
