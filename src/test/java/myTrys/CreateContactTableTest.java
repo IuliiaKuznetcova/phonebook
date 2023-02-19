@@ -1,26 +1,43 @@
-package kw;
+package myTrys;
 
 import com.github.javafaker.Faker;
+import e2e.MainPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class CreateContactTableTest extends ChangeLangue {
+public class CreateContactTableTest extends MainPage {
 
     Faker faker = new Faker();
 
     @DataProvider
-
     public Iterator<Object[]> newContact() {
         List<Object[]> list = new ArrayList<>();
         list.add(new Object[]{"Jul", "Kuz", "Ich"});
         list.add(new Object[]{"Jull", "Kuzz", "Ichh"});
         list.add(new Object[]{"Julll", "Kuzzz", "Ichhh"});
+        return list.iterator();
+    }
+
+    @DataProvider
+    public Iterator<Object[]> newContactWithCSV() throws IOException {
+        List<Object[]> list = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/data.csv")));
+        String line = reader.readLine();
+        while (line != null) {
+            String[] split = line.split(",");
+            list.add(new Object[]{split[0], split[1], split[2]});
+            line = reader.readLine();
+        }
         return list.iterator();
     }
 
