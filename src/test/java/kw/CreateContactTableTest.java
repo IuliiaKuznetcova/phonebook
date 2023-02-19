@@ -3,11 +3,26 @@ package kw;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CreateContactTableTest extends ChangeLangue {
 
     Faker faker = new Faker();
+
+    @DataProvider
+
+    public Iterator<Object[]> newContact() {
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{"Jul", "Kuz", "Ich"});
+        list.add(new Object[]{"Jull", "Kuzz", "Ichh"});
+        list.add(new Object[]{"Julll", "Kuzzz", "Ichhh"});
+        return list.iterator();
+    }
 
     private void openAddNewContactDialog() {
         driver.findElement(By.cssSelector("[href='/contacts']")).click();
@@ -47,13 +62,13 @@ public class CreateContactTableTest extends ChangeLangue {
     }
 
 
-    @Test
-    public void createNewContact() throws InterruptedException {
+    @Test(dataProvider = "newContact")
+    public void createNewContact(String firstName, String lastName, String description) throws InterruptedException {
         //  for (int i = 0; i < 2; i++) {
 
-        String firstName = faker.internet().uuid();
+       /* String firstName = faker.internet().uuid();
         String lastName = faker.internet().uuid();
-        String description = faker.internet().uuid();
+        String description = faker.internet().uuid();*/
         Number expectedCountRow = 1;
 
         //Click on the button "Add new contact"
