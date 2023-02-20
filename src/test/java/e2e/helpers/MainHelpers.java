@@ -1,9 +1,9 @@
-package kw;
+package e2e.helpers;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 
-public class ChangeLangue extends Login {
+public class MainHelpers extends LoginHelpers {
 
     @BeforeMethod
     public void changeLanguge() {

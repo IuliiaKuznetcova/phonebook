@@ -38,6 +38,9 @@ public class RegularExpression {
         System.out.println(a.matches("[a-zA-Z123]\\d+")); // когда мы точно знаем, какие цифры
         System.out.println(a.matches("[a-zA-Z0-9]\\d+")); // когда мы не знаем, какие цифры*/
 
+       /* String c = "helrlo";
+        System.out.println(c.matches("[a-zA-Z\\d+]{6,}"));*/
+
         String url = "https://www.google.ru";
         //  System.out.println(url.matches("https://www\\..+\\.(com|de)"));  // домен должен быть либо
         System.out.println(url.matches("https://www\\..+\\.[a-zA-Z]"));  // домен их любых латинских букв
