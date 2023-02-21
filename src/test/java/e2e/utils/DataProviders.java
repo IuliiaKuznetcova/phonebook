@@ -24,6 +24,15 @@ public class DataProviders {
     }
 
     @DataProvider
+    public Iterator<Object[]> changeLastNameAndDescription() {
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{"Zuk", "Hci"});
+        list.add(new Object[]{"Zukk", "Hcii"});
+        list.add(new Object[]{"Zukkk", "Hciii"});
+        return list.iterator();
+    }
+
+    @DataProvider
     public Iterator<Object[]> newContactWithCSV() throws IOException {
         List<Object[]> list = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/data.csv")));
