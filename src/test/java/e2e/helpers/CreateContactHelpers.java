@@ -9,9 +9,9 @@ public class CreateContactHelpers extends ContactHelpers {
         super(driver);
     }
 
-    public void openAddNewContactDialog() {
-        driver.findElement(By.cssSelector("[href='/contacts']")).click();
-        Assert.assertTrue(isElementPresent(By.xpath("//*[@role='dialog']")));
+    public void openAddNewContactDialog() throws InterruptedException {
+        openDialog(By.cssSelector("[href='/contacts']"));
+
     }
 
     public void fillAddNewContactForm(String firstName, String lastName, String description) {
@@ -24,9 +24,14 @@ public class CreateContactHelpers extends ContactHelpers {
     }
 
     public void saveNewContact() throws InterruptedException {
-        driver.findElement(By.xpath("//form//button[@type='submit']")).click();
-        Thread.sleep(1000);
-        Assert.assertFalse(isElementPresent(By.xpath("//*[@class=‘modal-content’]")));
+        //driver.findElement(By.xpath("//form//button[@type='submit']")).click();
+        //driver.findElement(By.xpath("//form//button[@type=\"submit\"]")).click();
+        clickOnVisibleElement(By.xpath("//button[@class='btn btn-primary']"));
+        Thread.sleep(2000);
+        //код Леонида, c ним падает на app.getCreateContact().saveNewContact();
+        // Assert.assertTrue(isElementPresent(By.xpath("//*[@role='dialog']")));
+        //Assert.assertFalse(isElementPresent(By.xpath("//*[@class=‘modal-content’]")));
+        Assert.assertFalse(isElementPresent(By.xpath("//*[@role='dialog']")));
     }
 
 

@@ -8,13 +8,20 @@ public class EditContactHelpers extends ContactHelpers {
         super(driver);
     }
 
-    public void openEditForm() {
+    public void openEditForm() throws InterruptedException {
+        Thread.sleep(1000);
         clickOnVisibleElement(By.id("btn-edit-contact"));
     }
 
     public void editeLastNameAndDescription(String lastName, String description) {
         fillField(lastName, (By.cssSelector("[name='input-ec-lastName']")));
         fillField(description, (By.cssSelector("[name='input-ec-description']")));
+    }
+
+    public void editeContactInfoForm(String firstName, String lastName, String description) {
+        fillField(firstName, (By.cssSelector("[name='input-ec-firstName']")));
+        editeLastNameAndDescription(lastName, description);
+
     }
 
     public void saveEditedContact() {

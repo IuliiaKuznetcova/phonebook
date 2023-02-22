@@ -16,16 +16,31 @@ public class ContactHelpers extends CommonHelpers {
         driver.findElement(By.cssSelector("[value='en']")).click();
     }
 
-    public void goToContactPageAndFillFilterField(String firstName) {
+    public void goToContactPageAndFillFilterField(String firstName) throws InterruptedException {
         driver.findElement(By.xpath("//a[@class='navbar-brand']//*[name()='svg']")).click();
         //Filter by creation name
         fillField(firstName, By.xpath("//*[@placeholder='Search...']"));
     }
 
     public void openContact() {
-        //clickOnVisibleElement(By.cssSelector("[link='/contacts/3607']"));
-        // clickOnVisibleElement(By.className("list-group"));  // код Леонида для локатора из checkCountRows
+        // clickOnVisibleElement(By.cssSelector("[link='/contacts/3607']"));
+        // clickOnVisibleElement(By.xpath("//*[@id='contacts-list']//*[@class='list-group']"));  // код Леонида для локатора из checkCountRows
         clickOnVisibleElement(By.xpath("//div[@id='contacts-list']"));
+    }
+
+    public void openRemoveContactDialog() throws InterruptedException {
+        openDialog(By.xpath("//*[@id='contacts-list']//*[@class='list-group-item']/img")); // код Леонида
+        // openDialog(By.xpath("//div[@id='contacts-list']//*[@class='list-group-item']/img"));
+    }
+
+    public void removeContact() throws InterruptedException {
+        // clickOnVisibleElement(By.id("check-box-remove-contact"));
+        // clickOnVisibleElement(By.id("submit-remove"));
+        clickOnVisibleElement(By.id("check-box-remove-contact"));
+        clickOnVisibleElement(By.id("submit-remove"));
+        Thread.sleep(1000);
+        Assert.assertFalse(isElementPresent(By.xpath("//*[@role='dialog']")));
+
     }
 
     public void checkFieldsOnContactInfo(String firstName, String lastName, String description) {
@@ -36,10 +51,11 @@ public class ContactHelpers extends CommonHelpers {
     }
 
     // считает количество строчек с таким локатором в числовом виде и сравнивает (в нашем примере 1)
-    public void checkCountRows(Number expectedCountRow) {
-        Number actualCountRow = driver.findElements(By.xpath("//div[@id='contacts-list']")).size();
-        //Number actualCountRow = driver.findElements(By.className("list-group")).size(); // код Леонида, падает
+    public void checkCountRows(Number expectedCountRow) throws InterruptedException {
+
+        // Number actualCountRow = driver.findElements(By.xpath("//*[@id='contacts-list']//*[@class='list-group']")).size();
+        Number actualCountRow = driver.findElements(By.xpath("//div[@id='contacts-list']//div[@class='list-group']")).size();
+        Thread.sleep(1000);
         Assert.assertEquals(actualCountRow, expectedCountRow);
     }
-
 }

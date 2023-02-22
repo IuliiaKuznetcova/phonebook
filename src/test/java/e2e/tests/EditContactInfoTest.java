@@ -11,7 +11,7 @@ public class EditContactInfoTest extends TestBase {
 
     @Test(dataProvider = "changeLastNameAndDescription", dataProviderClass = DataProviders.class)
 
-    public void editContactInfo(String lastName, String description) {
+    public void editContactInfo(String lastName, String description) throws InterruptedException {
 
         String firstName = "3302443e-b935-49ba-924b-1697263c87b6";
 

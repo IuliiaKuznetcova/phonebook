@@ -23,6 +23,12 @@ public class CommonHelpers {
          driver.findElement(cssSelector).sendKeys(userData);
     }*/
 
+    public void openDialog(By locator) throws InterruptedException {
+        clickOnVisibleElement(locator);
+        Thread.sleep(1000);
+        Assert.assertTrue(isElementPresent(By.xpath("//*[@role='dialog']")));
+    }
+
     public void fillField(String userData, By locator) {
         driver.findElement(locator).click();
         driver.findElement(locator).clear();
@@ -40,7 +46,7 @@ public class CommonHelpers {
         }
     }
 
- /*   public boolean isElementClickable(By by) {
+    /*public boolean isElementClickable(By by) {
         try {
             driver.findElement(by).click();
             return true;
