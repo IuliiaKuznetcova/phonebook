@@ -65,9 +65,13 @@ public class AplicationManager {
         return screenshot.getAbsolutePath();
     }
 
-    protected void stop() {
+    /*protected void stop() {
         if (driver != null) {
             driver.quit();
         }
+    }*/
+
+    protected void stop() {
+        driver.quit();
     }
 }

@@ -1,5 +1,10 @@
 package e2e.helpers;
 
+import e2e.utils.Recorder;
+import org.monte.media.Format;
+import org.monte.media.FormatKeys;
+import org.monte.media.math.Rational;
+import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +12,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
+import static org.monte.media.FormatKeys.*;
+import static org.monte.media.VideoFormatKeys.*;
+
 public class CommonHelpers {
 
     WebDriver driver;
     public WebDriverWait wait;
+    public ScreenRecorder screenRecorder;
 
     public CommonHelpers(WebDriver driver) {
         this.driver = driver;
@@ -19,6 +32,31 @@ public class CommonHelpers {
     public WebDriverWait setWait() {
         wait = new WebDriverWait(driver, 5);
         return wait;
+    }
+
+    public void startRecording() throws IOException, AWTException {
+        File file = new File("records");
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = screenSize.width;
+        int height = screenSize.height;
+        Rectangle captureSize = new Rectangle(0, 0, width, height);
+        GraphicsConfiguration gc =
+                GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+
+        screenRecorder = new Recorder(gc, captureSize,
+                new Format(MediaTypeKey, FormatKeys.MediaType.FILE, MimeTypeKey, MIME_AVI),
+                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, ENCODING_AVI_MJPG,
+                        CompressorNameKey, ENCODING_AVI_MJPG, DepthKey, 24, FrameRateKey,
+                        Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
+                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf(30)),
+                null, file, "MyVideo");
+
+        screenRecorder.start();
+
+    }
+
+    public void stopRecording() throws IOException {
+        screenRecorder.stop();
     }
 
     public void clickOnVisibleElement(By locator) {

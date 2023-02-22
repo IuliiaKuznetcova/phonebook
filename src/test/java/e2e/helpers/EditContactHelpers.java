@@ -21,7 +21,6 @@ public class EditContactHelpers extends ContactHelpers {
     public void editeContactInfoForm(String firstName, String lastName, String description) {
         fillField(firstName, (By.cssSelector("[name='input-ec-firstName']")));
         editeLastNameAndDescription(lastName, description);
-
     }
 
     public void saveEditedContact() {
