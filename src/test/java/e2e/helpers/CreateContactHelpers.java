@@ -2,7 +2,7 @@ package e2e.helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreateContactHelpers extends ContactHelpers {
     public CreateContactHelpers(WebDriver driver) {
@@ -15,24 +15,14 @@ public class CreateContactHelpers extends ContactHelpers {
     }
 
     public void fillAddNewContactForm(String firstName, String lastName, String description) {
-        //Fill field First name
         fillField(firstName, By.id("form-name"));
-        //Fill field Last name
         fillField(lastName, By.id("form-lastName"));
-        //Fill field About
         fillField(description, By.xpath("//*[@role='dialog']//*[@placeholder='About']"));
     }
 
-    public void saveNewContact() throws InterruptedException {
-        //driver.findElement(By.xpath("//form//button[@type='submit']")).click();
-        //driver.findElement(By.xpath("//form//button[@type=\"submit\"]")).click();
+    public void saveNewContact() {
         clickOnVisibleElement(By.xpath("//button[@class='btn btn-primary']"));
-        Thread.sleep(2000);
-        //код Леонида, c ним падает на app.getCreateContact().saveNewContact();
-        // Assert.assertTrue(isElementPresent(By.xpath("//*[@role='dialog']")));
-        //Assert.assertFalse(isElementPresent(By.xpath("//*[@class=‘modal-content’]")));
-        Assert.assertFalse(isElementPresent(By.xpath("//*[@role='dialog']")));
+        setWait().until(ExpectedConditions.invisibilityOfElementLocated
+                (By.cssSelector("By.xpath(\"//*[@role='dialog']\"))")));
     }
-
-
 }
