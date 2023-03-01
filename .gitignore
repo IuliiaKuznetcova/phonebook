@@ -4,8 +4,8 @@
 !**/src/main/**/build/
 !**/src/test/**/build/
 src/test/test_logs/
-records
 reference
+records
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
