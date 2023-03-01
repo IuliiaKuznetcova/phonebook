@@ -38,7 +38,7 @@ public class RegisterNewUserTest extends TestBase {
         String expectedPasswordErrorMessage = "Password must be no longer than 20 characters.";
 
         //Act
-        app.getRegister().deleteFiles("records");
+        //app.getRegister().deleteFiles("records");
         app.getRegister().startRecording();
         app.getRegister().goToRegistrationPage();
         app.getRegister().fillRegistrationForm(userData, password);
@@ -47,7 +47,7 @@ public class RegisterNewUserTest extends TestBase {
         app.getRegister().checkErrorMessage(app.getRegister().errorEmailMessageBlock, expectedEmailErrorMessage);
         app.getRegister().checkErrorMessage(app.getRegister().errorPasswordMaxLengthMessageBlock, expectedPasswordErrorMessage);
         Thread.sleep(5000);
-        app.getRegister().stopRecording();
+        // app.getRegister().stopRecording();
     }
 
     //Negative
