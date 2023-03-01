@@ -5,6 +5,7 @@ import e2e.helpers.CreateContactHelpers;
 import e2e.helpers.EditContactHelpers;
 import e2e.helpers.LoginHelpers;
 import e2e.helpers.RegisterHelpers;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -44,7 +45,9 @@ public class AplicationManager {
 
 
     protected void init() {
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
         driver.get("http://phonebook.telran-edu.de:8080/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -54,6 +57,7 @@ public class AplicationManager {
         //contact = new ContactHelpers(driver);
         createContact = new CreateContactHelpers(driver);
         editContact = new EditContactHelpers(driver);
+
 
     }
 

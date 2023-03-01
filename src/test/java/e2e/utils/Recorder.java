@@ -19,6 +19,7 @@ public class Recorder extends ScreenRecorder {
                     Format fileFormat, Format screenFormat, Format mouseFormat,
                     Format audioFormat, File movieFolder, String name) throws IOException, AWTException {
         super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
+        this.name = name;
     }
 
     @Override
@@ -28,9 +29,9 @@ public class Recorder extends ScreenRecorder {
 
     @Override
     protected File createMovieFile(Format fileFormat) throws IOException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH.mm");
 
-        return new File(movieFolder, name + "_" + dateFormat.format(new Date() + "." +
-                Registry.getInstance().getExtension(fileFormat)));
+        return new File(movieFolder, name + "_" + dateFormat.format(new Date()) + "." +
+                Registry.getInstance().getExtension(fileFormat));
     }
 }

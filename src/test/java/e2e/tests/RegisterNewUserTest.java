@@ -30,7 +30,7 @@ public class RegisterNewUserTest extends TestBase {
 
     //Negative
     @Test
-    public void registerNewUserWithInvalidData() throws IOException, AWTException {
+    public void registerNewUserWithInvalidData() throws IOException, AWTException, InterruptedException {
         //Arrange
         String userData = faker.internet().password();
         String password = faker.internet().emailAddress();
@@ -38,6 +38,7 @@ public class RegisterNewUserTest extends TestBase {
         String expectedPasswordErrorMessage = "Password must be no longer than 20 characters.";
 
         //Act
+        app.getRegister().deleteFiles("records");
         app.getRegister().startRecording();
         app.getRegister().goToRegistrationPage();
         app.getRegister().fillRegistrationForm(userData, password);
@@ -45,6 +46,7 @@ public class RegisterNewUserTest extends TestBase {
         //Assert
         app.getRegister().checkErrorMessage(app.getRegister().errorEmailMessageBlock, expectedEmailErrorMessage);
         app.getRegister().checkErrorMessage(app.getRegister().errorPasswordMaxLengthMessageBlock, expectedPasswordErrorMessage);
+        Thread.sleep(5000);
         app.getRegister().stopRecording();
     }
 
@@ -56,11 +58,14 @@ public class RegisterNewUserTest extends TestBase {
         String password = "test@gmail.com";
         String expectedErrorMessage = "Error! User already exists Login now?";
         //Act
+        // app.getRegister().deleteFiles("records");
+        //  app.getRegister().startRecording();
         app.getRegister().goToRegistrationPage();
         app.getRegister().fillRegistrationForm(userData, password);
         app.getRegister().clickSignUpButton();
         //Assert
         app.getRegister().checkErrorMessage(app.getRegister().errorMessageBlock, expectedErrorMessage);
+        // app.getRegister().stopRecording();
     }
 }
 

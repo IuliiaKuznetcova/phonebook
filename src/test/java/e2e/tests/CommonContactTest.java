@@ -19,6 +19,7 @@ public class CommonContactTest extends TestBase {
         String newlastName = faker.internet().uuid();
         String newdescription = faker.lorem().paragraph(1);
 
+        //app.getLogin().startRecording();
         //login
         app.getLogin().login();
 
@@ -45,5 +46,6 @@ public class CommonContactTest extends TestBase {
         getRemoveContact.openRemoveContactDialog();
         getRemoveContact.removeContact();
         getRemoveContact.checkCountRows(0);
+        // app.getLogin().startRecording();
     }
 }
