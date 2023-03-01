@@ -39,7 +39,7 @@ public class RegisterNewUserTest extends TestBase {
 
         //Act
         //app.getRegister().deleteFiles("records");
-        app.getRegister().startRecording();
+        //app.getRegister().startRecording();
         app.getRegister().goToRegistrationPage();
         app.getRegister().fillRegistrationForm(userData, password);
         Assert.assertFalse(app.getRegister().isElementPresent(app.getRegister().errorMessageBlock));
