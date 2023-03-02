@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="e2e.tests.CommonContactTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-02-22T19:46:06" hostname="KOMP" time="10.282">
+  <properties/>
+  <testcase name="userCanCreateEditRemoveContact" classname="e2e.tests.CommonContactTest" time="10.282"/>
+  <system-out><![CDATA[20:46:03.874 [Test worker] INFO  i.g.bonigarcia.wdm.WebDriverManager -- Using chromedriver 109.0.5414.74 (resolved driver for Chrome 109)
+20:46:03.922 [Test worker] INFO  i.g.bonigarcia.wdm.WebDriverManager -- Exporting webdriver.chrome.driver as C:\Users\aleks\.cache\selenium\chromedriver\win32\109.0.5414.74\chromedriver.exe
+20:46:03.925 [Test worker] INFO  e2e.TestBase -- Setup chrome driver
+20:46:06.668 [Test worker] INFO  e2e.TestBase -- Start test Kuz userCanCreateEditRemoveContact with data: []
+20:46:16.956 [Test worker] INFO  e2e.TestBase -- PASSEDuserCanCreateEditRemoveContact
+20:46:16.957 [Test worker] INFO  e2e.TestBase -- ==========================================================================
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 109.0.5414.74 (e7c5703604daa9cc128ccf5a5d3e993513758913-refs/branch-heads/5414@{#1172}) on port 37072
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+февр. 22, 2023 8:46:05 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
