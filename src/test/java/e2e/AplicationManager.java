@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 
 public class AplicationManager {
@@ -43,10 +44,26 @@ public class AplicationManager {
         return editContact;
     }
 
+    //для работы в докере
+    public WebDriver remoteDriverSelenoid() throws MalformedURLException {
+       /* DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("firefox");
+        capabilities.setVersion("109.0");
+        capabilities.setCapability("enableVNS", true);
+        capabilities.setCapability("enablelog", true);
+        driver = new RemoteWebDriver(
+                URI.create("http://127.0.0.1:4444/wd/hub").toURL(),
+                capabilities);*/
+        return driver;
+    }
 
-    protected void init() {
+    protected void init() throws MalformedURLException {
+        //для работы локально
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
+        //для работы в докере
+        /*       driver = remoteDriverSelenoid();*/
 
         driver.get("http://phonebook.telran-edu.de:8080/");
         driver.manage().window().maximize();

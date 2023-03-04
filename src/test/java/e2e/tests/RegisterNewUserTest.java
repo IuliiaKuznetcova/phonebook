@@ -46,7 +46,7 @@ public class RegisterNewUserTest extends TestBase {
         //Assert
         app.getRegister().checkErrorMessage(app.getRegister().errorEmailMessageBlock, expectedEmailErrorMessage);
         app.getRegister().checkErrorMessage(app.getRegister().errorPasswordMaxLengthMessageBlock, expectedPasswordErrorMessage);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         // app.getRegister().stopRecording();
     }
 

@@ -18,6 +18,12 @@ public class EditContactHelpers extends ContactHelpers {
         fillField(description, (By.cssSelector("[name='input-ec-description']")));
     }
 
+/*    public void eddFhoneNumber(String buttonPhones, String eddPhoneNumber) {
+        fillField(buttonPhones, (By.cssSelector("id='ngb-nav-21'")));
+        fillField(eddPhoneNumber, (By.cssSelector("id='btn-add-phone'")));
+
+    }*/
+
     public void editeContactInfoForm(String firstName, String lastName, String description) {
         fillField(firstName, (By.cssSelector("[name='input-ec-firstName']")));
         editeLastNameAndDescription(lastName, description);
