@@ -16,7 +16,7 @@ public class EditContactInfoTest extends TestBase {
         String firstName = "3302443e-b935-49ba-924b-1697263c87b6";
 
         app.getLogin().login();
-        app.getEditContact().changeLanguge();
+        app.getEditContact().changeLanguage();
         app.getEditContact().goToContactPageAndFillFilterField(firstName);
         app.getEditContact().checkCountRows(1);
         //  app.getContact().checkCountRows(1); // если таких имен несколько, нужно указать количество строчек

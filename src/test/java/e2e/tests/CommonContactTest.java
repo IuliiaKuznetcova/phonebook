@@ -24,7 +24,7 @@ public class CommonContactTest extends TestBase {
         app.getLogin().login();
 
         //add contact
-        app.getCreateContact().changeLanguge();
+        app.getCreateContact().changeLanguage();
         app.getCreateContact().openAddNewContactDialog();
         app.getCreateContact().fillAddNewContactForm(firstName, lastName, description);
         app.getCreateContact().saveNewContact();

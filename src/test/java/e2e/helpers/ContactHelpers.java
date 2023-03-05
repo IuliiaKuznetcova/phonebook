@@ -11,7 +11,7 @@ public class ContactHelpers extends CommonHelpers {
         super(driver);
     }
 
-    public void changeLanguge() {
+    public void changeLanguage() {
         driver.findElement(By.id("langSelect")).click();
         driver.findElement(By.cssSelector("[value='en']")).isDisplayed();
         driver.findElement(By.cssSelector("[value='en']")).click();

@@ -11,7 +11,7 @@ public class CreateContactTableTest extends TestBase {
     public void createNewContactDataProvider(String firstName, String lastName, String description) throws InterruptedException {
         Number expectedCountRow = 1;
         app.getLogin().login();
-        app.getCreateContact().changeLanguge();
+        app.getCreateContact().changeLanguage();
         app.getCreateContact().openAddNewContactDialog();
         app.getCreateContact().fillAddNewContactForm(firstName, lastName, description);
         app.getCreateContact().saveNewContact();
@@ -24,7 +24,7 @@ public class CreateContactTableTest extends TestBase {
     public void createNewContactDataProviderWithFileCSV(String firstName, String lastName, String description) throws InterruptedException {
         Number expectedCountRow = 1;
         app.getLogin().login();
-        app.getCreateContact().changeLanguge();
+        app.getCreateContact().changeLanguage();
         app.getCreateContact().openAddNewContactDialog();
         app.getCreateContact().fillAddNewContactForm(firstName, lastName, description);
         app.getCreateContact().saveNewContact();
